@@ -7,7 +7,7 @@ const voteOnProposal = [
     message: "for which proposal you want to vote for?",
     choices: [
       //   for(proposal in proposals){
-      //     { title: proposal.title }
+      //     { title: proposalCreation.title, value: "vote" },
       // }
     ],
   },
