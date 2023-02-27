@@ -1,4 +1,12 @@
 const prompts = require("prompts");
+const { contractProposal } = require("./deployProposal.js");
+
+const proposalCount = contractProposal.proposalCount;
+const proposalArray = [];
+for (let i = 0; i < proposalCount; i++) {
+  let proposal = contractProposal.getProposal;
+  if (proposal.isClosed) proposalArray.push(proposal);
+}
 
 const voteOnProposal = [
   {
@@ -6,8 +14,8 @@ const voteOnProposal = [
     name: "vote",
     message: "for which proposal you want to vote for?",
     choices: [
-      //   for(proposal in proposals){
-      //     { title: proposalCreation.title, value: "vote" },
+      //   for(proposal in proposalArray){
+      //     { title: proposal.title, value: "vote" },
       // }
     ],
   },
