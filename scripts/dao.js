@@ -1,5 +1,6 @@
-const hre = require("hardhat")
-const { introHandler } = require("./helper/intro")
+const hre = require("hardhat");
+const { introHandler } = require("./helper/intro");
+const { afterQuestions } = require("./helper/afterQuestions.js");
 
 /* const response = await prompts({
     type: "number",
@@ -9,10 +10,11 @@ const { introHandler } = require("./helper/intro")
 }) */
 
 async function main() {
-    await introHandler()
+  await introHandler();
+  await afterQuestions();
 }
 
 main().catch((error) => {
-    console.error(error)
-    process.exitCode = 1
-})
+  console.error(error);
+  process.exitCode = 1;
+});
