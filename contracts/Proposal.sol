@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 contract Proposal {
-    uint id;
+    uint proposalCount;
 
     struct proposal {
         string title;
@@ -25,9 +25,9 @@ contract Proposal {
         string memory title,
         string memory description
     ) public {
-        proposals[id].title = title;
-        proposals[id].description = description;
-        id += 1;
+        proposals[proposalCount].title = title;
+        proposals[proposalCount].description = description;
+        proposalCount += 1;
         emit newProposal(title, description, msg.sender);
     }
 
@@ -54,6 +54,7 @@ contract Proposal {
             string memory description,
             bool isClosed,
             address creator,
+            uint optionCount,
             bool succeeded
         )
     {
@@ -62,6 +63,7 @@ contract Proposal {
             proposals[propId].description,
             proposals[propId].isClosed,
             proposals[propId].creator,
+            proposals[propId].optionCount,
             proposals[propId].succeeded
         );
     }
