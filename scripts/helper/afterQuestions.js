@@ -19,5 +19,6 @@ const afterQuestions = [
 
 module.exports.afterQuestions = async (intro) => {
   const response = await prompts(afterQuestions);
-  console.log(response);
+  await response.value();
+  // console.log(response);
 };
