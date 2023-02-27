@@ -3,12 +3,14 @@ pragma solidity ^0.8.9;
 
 contract Proposal {
     uint id;
+
     struct proposal {
         string title;
         string description;
         bool isClosed;
         address creator;
         bool succeeded;
+        uint optionCount;
         mapping(uint256 => uint256) optionVotes;
         mapping(address => bool) voted;
     }
@@ -40,5 +42,34 @@ contract Proposal {
         proposals[propId].optionVotes[optionId] += 1;
         proposals[propId].voted[msg.sender] = true;
         emit newVote(propId, optionId);
+    }
+
+    function getProposal(
+        uint propId
+    )
+        public
+        view
+        returns (
+            string memory title,
+            string memory description,
+            bool isClosed,
+            address creator,
+            bool succeeded
+        )
+    {
+        return (
+            proposals[propId].title,
+            proposals[propId].description,
+            proposals[propId].isClosed,
+            proposals[propId].creator,
+            proposals[propId].succeeded
+        );
+    }
+
+    function getOptionVoteCount(
+        uint propId,
+        uint optionId
+    ) public view returns (uint) {
+        return proposals[propId].optionVotes[optionId];
     }
 }
