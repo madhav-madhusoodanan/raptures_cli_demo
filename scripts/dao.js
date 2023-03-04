@@ -41,8 +41,8 @@ async function main() {
     [name, addresss, etc, ...arguments]
   }
   */
-  console.log(actionResponse);
   const response = actionResponse.value.func(actionResponse);
+  console.log(await response);
 }
 
 main().catch((error) => {
