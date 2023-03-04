@@ -1,29 +1,36 @@
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
-contract Token is IVotes {
-    function getVotes(address account) external view returns (uint256) {}
+contract Token is ERC20, ERC20Permit, ERC20Votes {
+    constructor(
+        string memory name,
+        string memory symbol
+    ) ERC20(name, symbol) ERC20Permit(name) {}
 
-    function getPastVotes(
+    // The functions below are overrides required by Solidity.
+
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20, ERC20Votes) {
+        super._afterTokenTransfer(from, to, amount);
+    }
+
+    function _mint(
+        address to,
+        uint256 amount
+    ) internal override(ERC20, ERC20Votes) {
+        super._mint(to, amount);
+    }
+
+    function _burn(
         address account,
-        uint256 blockNumber
-    ) external view returns (uint256) {}
-
-    function getPastTotalSupply(
-        uint256 blockNumber
-    ) external view returns (uint256) {}
-
-    function delegates(address account) external view returns (address) {}
-
-    function delegate(address delegatee) external {}
-
-    function delegateBySig(
-        address delegatee,
-        uint256 nonce,
-        uint256 expiry,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external {}
+        uint256 amount
+    ) internal override(ERC20, ERC20Votes) {
+        super._burn(account, amount);
+    }
 }
