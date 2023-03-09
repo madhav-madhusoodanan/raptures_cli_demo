@@ -21,11 +21,11 @@ async function newProposal(config){
     _msgSender(),
     targets,
     values,
-    length,//new string[](targets.length)
+    length, //new string[](targets.length)
     calldatas,
     snapshot,
     deadline,
-    description)=>{
+    description) => {
       let proposal = {
         proposalId: proposalId,
         _msgSender:_msgSender(),
