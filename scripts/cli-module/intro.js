@@ -24,5 +24,5 @@ const exitHandler = () => console.log("") || true
 
 module.exports.introHandler = async (functionObject) => {
     const response = await prompts(initialQuestions, { onCancel: exitHandler })
-    return functionObject.createWallet()
+    return functionObject.createWallet(response)
 }

@@ -1,30 +1,27 @@
-const prompts = require("prompts");
-const { proposalCreation } = require("./createProposal");
-const { handleDAOCreation } = require("./daoCreation");
-const { voteProposal } = require("./voteProposal");
+const prompts = require("prompts")
 
-const afterQuestions = [
-  {
-    type: "autocomplete",
-    name: "value",
-    message: "What do you want to do?",
-    choices: [
-      {
-        title: "Create a DAO",
-        value: handleDAOCreation,
-      },
-      {
-        title: "Create a proposal",
-        value: proposalCreation,
-      },
-      {
-        title: "Vote on a proposal",
-        value: voteProposal,
-      },
-    ],
-  },
-];
-module.exports.afterQuestions = async () => {
-  const response = await prompts(afterQuestions);
-  return response.value;
-};
+module.exports.afterQuestions = async (functionObject) => {
+    const afterQuestions = [
+        {
+            type: "autocomplete",
+            name: "value",
+            message: "What do you want to do?",
+            choices: [
+                {
+                    title: "Create a DAO",
+                    value: functionObject.handleDAOCreation,
+                },
+                {
+                    title: "Create a proposal",
+                    value: functionObject.proposalCreation,
+                },
+                {
+                    title: "Vote on a proposal",
+                    value: functionObject.voteProposal,
+                },
+            ],
+        },
+    ]
+    const response = await prompts(afterQuestions)
+    return response.value
+}
