@@ -2,6 +2,8 @@ const prompts = require("prompts");
 const { createDAO } = require("../evm/createDao");
 
 module.exports.handleDAOCreation = async () => {
+  // const signers = await hre.ethers.getSigners();
+  // console.log(signers);
   const daoPrompt = [
     {
       type: "autocomplete",
@@ -10,7 +12,15 @@ module.exports.handleDAOCreation = async () => {
       choices: [
         {
           title: "Use a template",
-          value: { func: createDAO /*arguments*/ },
+          value: {
+            func: createDAO,
+            minDelay: 1,
+            proposers: [],
+            executers: [],
+            admin: "",
+            tokenName: "Raptures",
+            tokenSymbol: "RPT" /*arguments*/,
+          },
         },
         {
           title: "Create from scratch",
