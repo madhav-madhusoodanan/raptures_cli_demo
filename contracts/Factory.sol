@@ -2,26 +2,27 @@
 pragma solidity ^0.8.9;
 
 contract Factory {
-    event DAOCreated(
-        address daoAddress,
-        address owner,
-        uint256 creationTime
-    );
+    event DAOCreated(address daoAddress, address owner, uint256 creationTime);
 
     struct DAO {
-        string name,
-        string description,
+        string name;
+        string description;
     }
 
     address public owner;
     mapping(uint256 => address) public daos;
-    mapping (uint256 => DAO) public daoDetails;
+    mapping(uint256 => DAO) public daoDetails;
 
     constructor() {
         owner = msg.sender;
     }
 
-    function addDAO(uint256[] DAOSpecs , address[] DAOImplementations, string[] memory DAONames , string[] memory DAODescriptions) public {
+    function addDAO(
+        uint256[] memory DAOSpecs,
+        address[] memory DAOImplementations,
+        string[] memory DAONames,
+        string[] memory DAODescriptions
+    ) public {
         require(msg.sender == owner, "Only owner can add DAOs");
         for (uint256 i = 0; i < DAOSpecs.length; i++) {
             daos[DAOSpecs[i]] = DAOImplementations[i];
@@ -29,14 +30,12 @@ contract Factory {
         }
     }
 
-    function createDAO(uint256 _daoSpec) public return (address) {
+    function createDAO(uint256 _daoSpec) public returns (address) {
         address dao = create(daos[_daoSpec]);
         // INITIALIZE DAO
         emit DAOCreated(dao, msg.sender, block.timestamp);
         return dao;
     }
-
-
 
     function create(address _target) internal returns (address result) {
         bytes20 targetBytes = bytes20(_target);

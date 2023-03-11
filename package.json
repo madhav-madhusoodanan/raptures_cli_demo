@@ -5,7 +5,7 @@
     "hardhat": "^2.12.6"
   },
   "scripts": {
-    "start": "npx hardhat run scripts/dao.js"
+    "start": "npx hardhat run --network localhost scripts/dao.js"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.1",
