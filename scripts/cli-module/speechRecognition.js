@@ -41,6 +41,8 @@ const scanVoiceForSpeech = async () => {
 
     /* Now here is where the speech detection api works */
     await browser.close()
+    return transcript
 }
 
 scanVoiceForSpeech()
+// module.exports = scanVoiceForSpeech
