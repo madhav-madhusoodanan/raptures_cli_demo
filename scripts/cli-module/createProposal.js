@@ -16,5 +16,8 @@ module.exports.proposalCreation = async () => {
     },
   ];
   const response = await prompts(proposalCreater);
-  return createProposal({ Dao: readData, response: response });
+  return createProposal({
+    Dao: await readData(),
+    response: response,
+  });
 };
