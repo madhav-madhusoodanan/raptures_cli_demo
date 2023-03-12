@@ -1,6 +1,7 @@
 // const { ethers } = require("hardhat");
 const hre = require("hardhat");
 const { introHandler } = require("../cli-module/intro");
+const { writeData } = require("../cli-module/storeData");
 
 module.exports.createDAO = async (config) => {
   const signers = await hre.ethers.getSigners();
@@ -32,12 +33,8 @@ module.exports.createDAO = async (config) => {
   const daoFactory = await hre.ethers.getContractFactory("RapturesFactory");
   const Dao = await daoFactory.deploy(token.address, timeLockControl.address);
 
-  // TODO: create dao
-  const dao = Dao;
-  // const dao = Dao.connect(
-  //   introHandler(functionObject)
-  /*for testing
-    "0xbDA5747bFD65F08deb54cb465eB87D40e51B197E"*/
-  // );
+  const dao = Dao.connect(signers[0].address);
+  writeData(dao.address);
+
   return dao;
 };
