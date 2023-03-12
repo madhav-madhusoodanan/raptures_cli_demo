@@ -11,3 +11,5 @@ artifacts
 /test-results/
 /playwright-report/
 /playwright/.cache/
+scripts/solana/solana-multisig/client/target
+scripts/solana/solana-multisig/program/target
