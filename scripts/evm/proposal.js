@@ -3,10 +3,12 @@ const hre = require("hardhat");
 var proposalArray = [];
 
 module.exports.createProposal = async (config) => {
+  console.log(config.Dao);
+  console.log(config.response);
   const signers = await hre.ethers.getSigners();
   const dao = await hre.ethers.getContractAt(
     "RapturesFactory",
-    config.dao,
+    config.Dao,
     signers[0]
   );
   const proposalId = dao.propose(
