@@ -6,13 +6,34 @@ module.exports.createProposal = async (config) => {
   const signers = await hre.ethers.getSigners();
   const dao = await hre.ethers.getContractAt(
     "RapturesFactory",
-    "0x1291Be112d480055DaFd8a610b7d1e203891C274",
+    config.dao,
     signers[0]
   );
   const proposalId = dao.propose(
     signers.map((signer) => signer.address),
-    [2],
-    [],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+      "0x00",
+    ],
     config.response
     // config.targets, //address[] memory targets,
     // config.values, //uint256[] memory values,
