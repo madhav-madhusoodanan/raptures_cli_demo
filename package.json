@@ -5,12 +5,15 @@
     "hardhat": "^2.12.6"
   },
   "scripts": {
-    "start": "npx hardhat run --network localhost scripts/dao.js"
+    "start:evm": "npx hardhat run --network localhost scripts/dao.js",
+    "build:solana": "cd solana-multisig && bash run.sh",
+    "start:solana": "node scripts/dao.js"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.1",
     "@openzeppelin/contracts-upgradeable": "^4.8.2",
     "@solana/spl-governance": "^0.3.25",
+    "@solana/web3.js": "^1.73.4",
     "playwright-webkit": "^1.31.2",
     "prompts": "^2.4.2",
     "yaml": "^2.2.1"

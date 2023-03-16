@@ -1,8 +1,9 @@
 const hre = require("hardhat");
-const { introHandler } = require("./cli-module/intro");
-const { afterQuestions } = require("./cli-module/afterQuestions.js");
 const { createWallet } = require("./evm/createWallet");
 const { createDAO } = require("./evm/createDao");
+
+const { introHandler } = require("./cli-module/intro");
+const { afterQuestions } = require("./cli-module/afterQuestions.js");
 const { handleDAOCreation } = require("./cli-module/daoCreation");
 const { proposalCreation } = require("./cli-module/createProposal");
 const { voteProposal } = require("./cli-module/voteProposal");
