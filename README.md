@@ -1,13 +1,15 @@
-# Sample Hardhat Project
+# Raptures CLI demo
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+Raptures aims to be a one-stop destination for managing DAOs with zero complexity.
 
-Try running some of the following tasks:
+This is intended as a monorepo of the CLI demo of Raptures
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
-```
+Currently, we are building both an EVM version as well as a Solana version of the same
+
+the scripts/ folder contains the modules such as
+
+<ol>
+    <li> CLI Module (the part handling the CLI frontend)
+    <li> The Solana module (the part interfacing the Solana programs)
+    <li> The EVM module (the part interfacing the EVM contracts)
+</ol
